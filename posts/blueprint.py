@@ -23,17 +23,25 @@ def create_post():
         form = PostForm()
         return render_template('posts/create_post.html', form=form)
 
-
+# TODO fix search pagination
 @posts.route('/')
 def index():
     q = request.args.get('q')
+    page = request.args.get('page')
+
+    if page and page.isdigit():
+        page = int(page)
+    else:
+        page = 1
 
     if q:
         posts = Post.query.filter(Post.title.contains(q) | Post.body.contains(q))
     else:
         posts = Post.query.order_by(Post.created.desc())
 
-    return render_template('posts/index.html', posts=posts)
+    pages = posts.paginate(page=page, per_page=5)
+
+    return render_template('posts/index.html', posts=posts, pages=pages)
 
 
 @posts.route('/<slug>')
