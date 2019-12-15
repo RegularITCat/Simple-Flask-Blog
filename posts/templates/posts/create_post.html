@@ -10,7 +10,7 @@
 
 {% block content %}
     <form action="{{ url_for('posts.create_post') }}" method="post">
-        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
             <div class="form-group">
                 {{ form.title.label(class='control-label') }}
                 {{ form.title(class='form-control') }}
