@@ -1,6 +1,7 @@
-from flask_wtf import Form, StringField, TextAreaField
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField
 
 
-class PostForm(Form):
-    title = StringField('Title')
+class PostForm(FlaskForm):
+    title = StringField('Post Title')
     body = TextAreaField('Body')

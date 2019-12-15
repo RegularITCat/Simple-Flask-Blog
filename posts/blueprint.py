@@ -1,7 +1,14 @@
 from flask import Blueprint, render_template, request
 from models import Post, Tag
+from .forms import PostForm
 
 posts = Blueprint('posts', __name__, template_folder='templates')
+
+
+@posts.route('/create', methods=['GET', 'POST'])
+def create_post():
+    form = PostForm()
+    return render_template('posts/create_post.html', form=form)
 
 
 @posts.route('/')
