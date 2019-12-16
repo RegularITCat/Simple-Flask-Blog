@@ -20,7 +20,7 @@ class Post(db.Model):
     title = db.Column(db.String(128), nullable=False)
     slug = db.Column(db.String(128), unique=True)
     body = db.Column(db.Text)
-    created = db.Column(db.Date, default=datetime.now())
+    created = db.Column(db.Date, default=datetime.now)
 
     tags = db.relationship('Tag', secondary=post_tags, backref=db.backref('posts'), lazy='dynamic')
 
