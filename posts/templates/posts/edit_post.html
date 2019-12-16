@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit post
+{% endblock %}
+
+{% block content_title %}
+    Edit post
+{% endblock %}
+
+{% block content %}
+    <form action="{{ url_for('posts.edit_post', slug=post.slug) }}" method="post">
+        {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.title.label(class='control-label') }}
+                {{ form.title(class='form-control') }}
+            </div>
+            <div class="form-group">
+                {{ form.body.label(class='control-label') }}
+                {{ form.body(class='form-control') }}
+            </div>
+            <button type="submit" Class="btn btn-success">commit</button>
+    </form>
+{% endblock %}
